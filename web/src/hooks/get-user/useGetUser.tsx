@@ -4,6 +4,7 @@ import axios from "axios";
 import { AuthContext, Auth } from "../../contexts/authContext";
 import interceptResponse from "../../util/response-interceptor";
 import { User } from "./interfaces";
+import grabToken from "../../util/grab-token";
 
 const useGetUser = () => {
   const [user, setUser] = useState<User>({
@@ -18,10 +19,10 @@ const useGetUser = () => {
   useEffect(() => {
     let subscribed = true;
     const fetchUser = async () => {
-      let token = localStorage.getItem("token") as string;
+      let token = grabToken();
       const url = "http://localhost:8000/api/v1.0/users/me";
       if (setLoggedIn) interceptResponse(setLoggedIn);
-      if (token) token = JSON.parse(token);
+
       try {
         const res = await axios.get(url, {
           headers: {

@@ -48,7 +48,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }): JSX.Element => {
         password
       });
       const token = res.data.accessToken;
-      await localStorage.setItem("token", JSON.stringify(token));
+      await localStorage.setItem("token", token);
       setDBerror("");
       setIsLoading(false);
       if (setLoggedIn) {
