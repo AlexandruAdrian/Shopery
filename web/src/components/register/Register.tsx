@@ -41,6 +41,7 @@ const Register: React.FC = (): JSX.Element => {
   // Serves as callback function for the custom hook.
   const registerUser = async (): Promise<void> => {
     const { firstName, lastName, email, password } = values;
+
     const url = "http://localhost:8000/api/v1.0/users/register";
     try {
       setIsLoading(true);
@@ -50,6 +51,7 @@ const Register: React.FC = (): JSX.Element => {
         email,
         password
       });
+
       setResponse(res);
       setIsLoading(false);
     } catch (err) {
@@ -66,6 +68,7 @@ const Register: React.FC = (): JSX.Element => {
     errors,
     isSubmitting
   } = useFormValidation(initialState, validateForm, registerUser);
+
   // Helps with styling input elements (prop).
   const checkForError: boolean =
     Object.keys(errors).length > 0 || dbError.length !== 0;
